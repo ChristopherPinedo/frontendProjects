@@ -1,5 +1,5 @@
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { CodeXml, Home, Maximize2, Menu } from 'lucide-react';
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { CodeXml, Eye, Github, Home, Maximize2, Menu } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
@@ -14,7 +14,7 @@ import {
   CommandSeparator,
 } from './ui/command';
 import { dashboardProjectsLevels } from '@/router/dashboardProjectsLevels';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+// import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import { dashboardProjectsContent } from '@/router/dashboardProjectsContent';
 import { Separator } from './ui/separator';
 import { useEffect } from 'react';
@@ -59,16 +59,20 @@ function ProjectsMenu() {
 
 export function Dashboard() {
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
-    console.log(location);
-  }, [location]);
+    // console.log(location);
+    if (location.pathname === '/') {
+      navigate('/home', { replace: true });
+    }
+  }, [location, navigate]);
 
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center justify-center border-b px-4 lg:h-[60px] lg:px-6">
-            <Link to="/" className="item flex gap-2 font-semibold">
+            <Link to="/home" className="item flex gap-2 font-semibold">
               <CodeXml className="h-6 w-6" />
               <span>Frontend Projects</span>
             </Link>
@@ -109,48 +113,73 @@ export function Dashboard() {
             <p>Frontend Projects</p>
           </div> */}
         </header>
-        <main className=" h-full p-4 md:p-6">
-          {location.pathname === '/home' ? (
+        <main className="h-screen p-4">
+          {location.pathname === '/home' || location.pathname === '/404' ? (
             <Outlet />
           ) : (
             <>
               {dashboardProjectsContent
                 .filter((project) => location.pathname === project.route)
                 .map((project) => (
-                  <div className="flex h-full flex-col gap-4 md:gap-6 lg:flex-row">
+                  <div className="flex h-full flex-col gap-4 lg:flex-row">
                     <section className="lg:flex-1 lg:basis-1/3 xl:basis-1/4">
                       <Card>
                         <CardHeader>
                           <CardTitle>{project.name}</CardTitle>
-                          <CardDescription>{project.desc}</CardDescription>
                         </CardHeader>
-                        <CardContent className="flex flex-col gap-6">
-                          <div className="flex cursor-default flex-wrap gap-2">
-                            {project.technologies.map((tech) => (
-                              <Badge>{tech}</Badge>
-                            ))}
+                        <CardContent className="flex flex-col gap-4">
+                          <Separator />
+                          <div className="flex flex-col gap-2 rounded border border-dashed p-2">
+                            <span>Description:</span>
+                            <CardDescription>{project.desc} </CardDescription>
+                          </div>
+                          {/* <Separator /> */}
+                          <div className="flex flex-col gap-2 rounded border border-dashed p-2">
+                            <span>Technologies:</span>
+                            <div className="flex cursor-default flex-wrap justify-center gap-2">
+                              {project.technologies.map((tech) => (
+                                <Badge>{tech}</Badge>
+                              ))}
+                            </div>
+                          </div>
+                          {/* <Separator /> */}
+                          <div className="flex flex-col gap-2 rounded border border-dashed p-2">
+                            <span>Reference:</span>
+                            <div className="flex items-center">
+                              <span className="basis-1/2">{project.reference.name}</span>
+                              <Button className="basis-1/2" asChild>
+                                <a href={project.reference.url} target="_blank">
+                                  <span>View reference</span>
+                                  <Eye className=" ml-4 h-4 w-4" />
+                                </a>
+                              </Button>
+                            </div>
                           </div>
                           <Separator />
-                          <Button> Open Reference</Button>
+                          <div className="flex flex-col gap-2">
+                            {/* <span>Actions:</span> */}
+                            <div className="flex justify-center gap-2">
+                              <Button className="basis-1/2" asChild>
+                                <a href={project.source.url} target="_blank">
+                                  <span>Source code</span>
+                                  <Github className=" ml-4 h-4 w-4" />
+                                </a>
+                              </Button>
+                              <Button className="basis-1/2" asChild>
+                                <Link to={project.singleViewRoute} target="_blank">
+                                  <span>Open in new tab</span>
+                                  <Maximize2 className=" ml-4 h-4 w-4" />
+                                </Link>
+                              </Button>
+                            </div>
+                          </div>
                         </CardContent>
                       </Card>
                     </section>
-                    <section className="relative lg:basis-2/3 xl:basis-3/4">
-                      <div className="absolute right-4 top-4 lg:right-4 lg:top-4">
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Button variant="outline" size="icon">
-                                <Maximize2 className="h-4 w-4" />
-                              </Button>
-                            </TooltipTrigger>
-                            <TooltipContent side="right">
-                              <p>Abrir proyecto en una nueva pestaña</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                      <Outlet />
+                    <section className=" lg:basis-2/3 xl:basis-3/4">
+                      <Card className=" h-full *:h-full *:rounded-lg">
+                        <Outlet />
+                      </Card>
                     </section>
                   </div>
                 ))}

@@ -10,10 +10,14 @@ export const dashboardProjectsContent = [
     desc: 'Componente tipo card',
     level: dashboardProjectsLevels[1],
     route: `${dashboardProjectsLevels[1].path}/Order-Summary-Component`,
+    singleViewRoute: `${dashboardProjectsLevels[1].path}/Order-Summary-Component/singleView`,
     component: OrderSummaryComponent,
-    source: {
+    reference: {
       name: 'Frontend Mentor',
-      url: '',
+      url: 'https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj',
+    },
+    source: {
+      url: 'https://github.com/ChristopherPinedo/frontendProjects/blob/master/src/projects/orderSummaryComponent/index.tsx',
     },
     technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
   },
@@ -23,9 +27,13 @@ export const dashboardProjectsContent = [
     desc: 'proyect 2',
     level: dashboardProjectsLevels[2],
     route: `${dashboardProjectsLevels[2].path}/Time-Tracking-Dashboard`,
+    singleViewRoute: `${dashboardProjectsLevels[2].path}/Time-Tracking-Dashboard/singleView`,
     component: TimeTrackingDashboard,
-    source: {
+    reference: {
       name: 'Frontend Mentor',
+      url: 'https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj',
+    },
+    source: {
       url: '',
     },
     technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
@@ -36,9 +44,13 @@ export const dashboardProjectsContent = [
     desc: 'proyect 3',
     level: dashboardProjectsLevels[3],
     route: `${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
+    singleViewRoute: `${dashboardProjectsLevels[3].path}/Space-Tourism-Website/singleView`,
     component: SpaceTourismWebsite,
-    source: {
+    reference: {
       name: 'Frontend Mentor',
+      url: 'https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj',
+    },
+    source: {
       url: '',
     },
     technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
