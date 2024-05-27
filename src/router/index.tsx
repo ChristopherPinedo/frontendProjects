@@ -17,8 +17,6 @@ function Router() {
         {dashboardProjectsContent.map((project) => (
           <Route key={project.id} path={`${project.route}/singleView`} element={<project.component />} />
         ))}
-        {/* <Route path="singleView">
-        </Route> */}
       </>,
     ),
     {
