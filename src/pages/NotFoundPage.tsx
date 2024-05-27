@@ -12,7 +12,7 @@ function NotFoundPage() {
         console.log(counter);
         return;
       }
-      navigate('/home');
+      navigate('/dashboard/home');
     }, 1000);
     // navigate('/home');
   }, [counter]);

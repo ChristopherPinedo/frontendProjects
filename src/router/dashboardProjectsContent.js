@@ -9,8 +9,10 @@ export const dashboardProjectsContent = [
     name: 'Order Summary component',
     desc: 'Componente tipo card',
     level: dashboardProjectsLevels[1],
-    route: `${dashboardProjectsLevels[1].path}/Order-Summary-Component`,
-    singleViewRoute: `${dashboardProjectsLevels[1].path}/Order-Summary-Component/singleView`,
+    routes: {
+      dashboard: `/dashboard${dashboardProjectsLevels[1].path}/Order-Summary-Component`,
+      singleView: `/singleView${dashboardProjectsLevels[1].path}/Order-Summary-Component`,
+    },
     component: OrderSummaryComponent,
     reference: {
       name: 'Frontend Mentor',
@@ -26,8 +28,10 @@ export const dashboardProjectsContent = [
     name: 'Time Tracking Dashboard',
     desc: 'proyect 2',
     level: dashboardProjectsLevels[2],
-    route: `${dashboardProjectsLevels[2].path}/Time-Tracking-Dashboard`,
-    singleViewRoute: `${dashboardProjectsLevels[2].path}/Time-Tracking-Dashboard/singleView`,
+    routes: {
+      dashboard: `/dashboard${dashboardProjectsLevels[2].path}/Time-Tracking-Dashboard`,
+      singleView: `/singleView${dashboardProjectsLevels[2].path}/Time-Tracking-Dashboard`,
+    },
     component: TimeTrackingDashboard,
     reference: {
       name: 'Frontend Mentor',
@@ -43,8 +47,10 @@ export const dashboardProjectsContent = [
     name: 'Space Tourism Website',
     desc: 'proyect 3',
     level: dashboardProjectsLevels[3],
-    route: `${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
-    singleViewRoute: `${dashboardProjectsLevels[3].path}/Space-Tourism-Website/singleView`,
+    routes: {
+      dashboard: `/dashboard${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
+      singleView: `/singleView${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
+    },
     component: SpaceTourismWebsite,
     reference: {
       name: 'Frontend Mentor',

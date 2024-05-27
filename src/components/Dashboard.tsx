@@ -25,7 +25,7 @@ function ProjectsMenu() {
   return (
     <div>
       <nav className="px-3">
-        <NavLink to="/home" className={({ isActive }) => (isActive ? 'font-semibold' : 'font-normal')}>
+        <NavLink to="/dashboard/home" className={({ isActive }) => (isActive ? 'font-semibold' : 'font-normal')}>
           <div className="flex items-center gap-2 rounded-lg py-2 text-sm">
             <Home className="h-4 w-4" />
             <span>Home</span>
@@ -42,7 +42,10 @@ function ProjectsMenu() {
               {dashboardProjectsContent
                 .filter((route) => routeLevel.name === route.level.name)
                 .map((route, routeIndex) => (
-                  <NavLink to={route.route} className={({ isActive }) => (isActive ? 'font-semibold' : 'font-normal')}>
+                  <NavLink
+                    to={route.routes.dashboard}
+                    className={({ isActive }) => (isActive ? 'font-semibold' : 'font-normal')}
+                  >
                     <CommandItem key={routeIndex} className="cursor-pointer">
                       <span>{route.name}</span>
                     </CommandItem>
@@ -61,9 +64,9 @@ export function Dashboard() {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    // console.log(location);
-    if (location.pathname === '/') {
-      navigate('/home', { replace: true });
+    console.log(location);
+    if (location.pathname === '/dashboard') {
+      navigate('/dashboard/home', { replace: true });
     }
   }, [location, navigate]);
 
@@ -72,7 +75,7 @@ export function Dashboard() {
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center justify-center border-b px-4 lg:h-[60px] lg:px-6">
-            <Link to="/home" className="item flex gap-2 font-semibold">
+            <Link to="/dashboard/home" className="item flex gap-2 font-semibold">
               <CodeXml className="h-6 w-6" />
               <span>Frontend Projects</span>
             </Link>
@@ -114,12 +117,12 @@ export function Dashboard() {
           </div> */}
         </header>
         <main className="h-screen p-4">
-          {location.pathname === '/home' || location.pathname === '/404' ? (
+          {location.pathname === '/dashboard/home' ? (
             <Outlet />
           ) : (
             <>
               {dashboardProjectsContent
-                .filter((project) => location.pathname === project.route)
+                .filter((project) => location.pathname === project.routes.dashboard)
                 .map((project) => (
                   <div className="flex h-full flex-col gap-4 lg:flex-row">
                     <section className="lg:flex-1 lg:basis-1/3 xl:basis-1/4">
@@ -133,7 +136,6 @@ export function Dashboard() {
                             <span>Description:</span>
                             <CardDescription>{project.desc} </CardDescription>
                           </div>
-                          {/* <Separator /> */}
                           <div className="flex flex-col gap-2 rounded border border-dashed p-2">
                             <span>Technologies:</span>
                             <div className="flex cursor-default flex-wrap justify-center gap-2">
@@ -142,7 +144,6 @@ export function Dashboard() {
                               ))}
                             </div>
                           </div>
-                          {/* <Separator /> */}
                           <div className="flex flex-col gap-2 rounded border border-dashed p-2">
                             <span>Reference:</span>
                             <div className="flex items-center">
@@ -157,7 +158,6 @@ export function Dashboard() {
                           </div>
                           <Separator />
                           <div className="flex flex-col gap-2">
-                            {/* <span>Actions:</span> */}
                             <div className="flex justify-center gap-2">
                               <Button className="basis-1/2" asChild>
                                 <a href={project.source.url} target="_blank">
@@ -166,7 +166,7 @@ export function Dashboard() {
                                 </a>
                               </Button>
                               <Button className="basis-1/2" asChild>
-                                <Link to={project.singleViewRoute} target="_blank">
+                                <Link to={project.routes.singleView} target="_blank">
                                   <span>Open in new tab</span>
                                   <Maximize2 className=" ml-4 h-4 w-4" />
                                 </Link>
