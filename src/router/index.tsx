@@ -12,6 +12,7 @@ import { dashboardProjectsContent } from './dashboardProjectsContent';
 import { HomePage } from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import { useEffect } from 'react';
+import { ThemeProvider } from '@/common/theme-provider';
 
 export default function Root() {
   const location = useLocation();
@@ -21,9 +22,13 @@ export default function Root() {
     if (location.pathname === '/') {
       navigate('/dashboard/home', { replace: true });
     }
-  }, [location]);
+  }, [location, navigate]);
 
-  return <Outlet />;
+  return (
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <Outlet />
+    </ThemeProvider>
+  );
 }
 
 function Router() {

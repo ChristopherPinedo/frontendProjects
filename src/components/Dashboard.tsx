@@ -20,12 +20,16 @@ import { Separator } from './ui/separator';
 import { useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
+import { ModeToggle } from '@/common/mode-toggle';
 
 function ProjectsMenu() {
   return (
     <div>
       <nav className="px-3">
-        <NavLink to="/dashboard/home" className={({ isActive }) => (isActive ? 'font-semibold' : 'font-normal')}>
+        <NavLink
+          to="/dashboard/home"
+          className={({ isActive }) => (isActive ? 'font-semibold underline' : 'font-normal')}
+        >
           <div className="flex items-center gap-2 rounded-lg py-2 text-sm">
             <Home className="h-4 w-4" />
             <span>Home</span>
@@ -44,7 +48,7 @@ function ProjectsMenu() {
                 .map((route, routeIndex) => (
                   <NavLink
                     to={route.routes.dashboard}
-                    className={({ isActive }) => (isActive ? 'font-semibold' : 'font-normal')}
+                    className={({ isActive }) => (isActive ? 'font-semibold underline' : 'font-normal')}
                   >
                     <CommandItem key={routeIndex} className="cursor-pointer">
                       <span>{route.name}</span>
@@ -83,9 +87,9 @@ export function Dashboard() {
           <div className="flex-1">
             <ProjectsMenu />
           </div>
-          {/* <div className="mt-auto p-4">
-            <p>First card</p>
-          </div> */}
+          <div className="mt-auto p-4">
+            <ModeToggle />
+          </div>
         </div>
       </div>
       <div className="flex flex-col">
@@ -105,9 +109,9 @@ export function Dashboard() {
                 </Link>
               </nav>
               <ProjectsMenu />
-              {/* <div className="mt-auto">
-                <p>Second card</p>
-              </div> */}
+              <div className="mt-auto">
+                <ModeToggle />
+              </div>
             </SheetContent>
           </Sheet>
           {/* <div className="flex w-full flex-1 flex-row items-center gap-2 text-lg font-medium">
@@ -116,7 +120,7 @@ export function Dashboard() {
             <p>Frontend Projects</p>
           </div> */}
         </header>
-        <main className="h-screen p-4">
+        <main className="mx-auto min-h-screen w-full max-w-screen-2xl p-4 md:px-8 xl:px-12">
           {location.pathname === '/dashboard/home' ? (
             <Outlet />
           ) : (
@@ -176,7 +180,7 @@ export function Dashboard() {
                         </CardContent>
                       </Card>
                     </section>
-                    <section className=" lg:basis-2/3 xl:basis-3/4">
+                    <section className=" lg:basis-2/3 xl:basis-3/4 ">
                       <Card className=" h-full *:h-full *:rounded-lg">
                         <Outlet />
                       </Card>
