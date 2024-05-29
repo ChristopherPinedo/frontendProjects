@@ -2,7 +2,7 @@ import {
   Outlet,
   Route,
   RouterProvider,
-  createHashRouter,
+  createBrowserRouter,
   createRoutesFromElements,
   useLocation,
   useNavigate,
@@ -32,7 +32,7 @@ export default function Root() {
 }
 
 function Router() {
-  const appRouter = createHashRouter(
+  const appRouter = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Root />} errorElement={<NotFoundPage />}>
         <Route path="dashboard" element={<Dashboard />}>

@@ -55,7 +55,7 @@ function ProjectsMenu() {
                     </CommandItem>
                   </NavLink>
                 ))}
-              <CommandSeparator />
+              <CommandSeparator className="mb-2" />
             </CommandGroup>
           ))}
         </CommandList>
@@ -75,9 +75,9 @@ export function Dashboard() {
   }, [location, navigate]);
 
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[320px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
-        <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="fixed flex h-full max-h-screen flex-col gap-2 md:w-[219px] lg:w-[319px]">
           <div className="flex h-14 items-center justify-center border-b px-4 lg:h-[60px] lg:px-6">
             <Link to="/dashboard/home" className="item flex gap-2 font-semibold">
               <CodeXml className="h-6 w-6" />
@@ -151,10 +151,10 @@ export function Dashboard() {
                           <div className="flex flex-col gap-2 rounded border border-dashed p-2">
                             <span>Reference:</span>
                             <div className="flex items-center">
-                              <span className="basis-1/2">{project.reference.name}</span>
-                              <Button className="basis-1/2" asChild>
+                              <span className="flex-1">{project.reference.name}</span>
+                              <Button asChild>
                                 <a href={project.reference.url} target="_blank">
-                                  <span>View reference</span>
+                                  <span>View</span>
                                   <Eye className=" ml-4 h-4 w-4" />
                                 </a>
                               </Button>

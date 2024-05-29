@@ -28,7 +28,7 @@ function HomePage() {
               {dashboardProjectsContent
                 .filter((project) => routeLevel.name === project.level.name)
                 .map((project, projectIndex) => (
-                  <Card key={projectIndex} className="p-4">
+                  <Card key={projectIndex} className="p-2">
                     <CardHeader>
                       <CardTitle>{project.name}</CardTitle>
                     </CardHeader>
