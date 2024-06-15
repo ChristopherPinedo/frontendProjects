@@ -1,12 +1,4 @@
-import {
-  Outlet,
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Dashboard } from '../components/Dashboard';
 import { dashboardProjectsContent } from './dashboardProjectsContent';
 import { HomePage } from '@/pages/HomePage';
@@ -18,7 +10,7 @@ export default function Root() {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(location);
+    // console.log(location);
     if (location.pathname === '/') {
       navigate('/dashboard/home', { replace: true });
     }
@@ -32,28 +24,45 @@ export default function Root() {
 }
 
 function Router() {
-  const appRouter = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<Root />} errorElement={<NotFoundPage />}>
-        <Route path="dashboard" element={<Dashboard />}>
-          <Route index path="home" element={<HomePage />} />
-          {dashboardProjectsContent.map((project) => (
-            <Route key={project.id} path={project.routes.dashboard} element={<project.component />} />
-          ))}
-        </Route>
-        <Route path="singleView">
+  // const appRouter = createBrowserRouter(
+  //   createRoutesFromElements(
+  //     <Route path="/" element={<Root />} errorElement={<NotFoundPage />}>
+  //       <Route path="dashboard" element={<Dashboard />}>
+  //         <Route index path="home" element={<HomePage />} />
+  //         {dashboardProjectsContent.map((project) => (
+  //           <Route key={project.id} path={project.routes.dashboard} element={<project.component />} />
+  //         ))}
+  //       </Route>
+  //       <Route path="singleView">
+  //         {dashboardProjectsContent.map((project) => (
+  //           <Route key={project.id} path={project.routes.singleView} element={<project.component />} />
+  //         ))}
+  //       </Route>
+  //     </Route>,
+  //   ),
+  //   {
+  //     basename: import.meta.env.DEV ? '/' : '/frontendProjects/',
+  //   },
+  // );
+  // return <RouterProvider router={appRouter} />;
+  return (
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/frontendProjects/'}>
+      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+        <Routes>
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<Dashboard />}>
+            <Route path="/dashboard/home" element={<HomePage />} />
+            {dashboardProjectsContent.map((project) => (
+              <Route key={project.id} path={project.routes.dashboard} element={<project.component />} />
+            ))}
+          </Route>
           {dashboardProjectsContent.map((project) => (
             <Route key={project.id} path={project.routes.singleView} element={<project.component />} />
           ))}
-        </Route>
-      </Route>,
-    ),
-    {
-      basename: import.meta.env.DEV ? '/' : '/frontendProjects/',
-    },
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   );
-
-  return <RouterProvider router={appRouter} />;
 }
 
 export { Router };

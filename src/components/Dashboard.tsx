@@ -22,6 +22,31 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Badge } from './ui/badge';
 import { ModeToggle } from '@/common/mode-toggle';
 
+// function ContactCard() {
+//   return (
+//     <Card x-chunk="dashboard-02-chunk-0">
+//       <CardHeader className="p-2 lg:p-4">
+//         {/* <CardTitle>Contact me</CardTitle> */}
+//         <CardDescription>Site developed by Christopher Pinedo.</CardDescription>
+//         <CardDescription>Visit my portfolio and my social networks.</CardDescription>
+//       </CardHeader>
+//       <CardContent className="flex justify-between p-2 pt-0 lg:p-4">
+//         <Button variant="outline" size="icon">
+//           <SquareUserRound className="h-4 w-4" />
+//         </Button>
+//         <div className="flex gap-2 lg:gap-6">
+//           <Button variant="outline" size="icon">
+//             <SquareUserRound className="h-4 w-4" />
+//           </Button>
+//           <Button variant="outline" size="icon">
+//             <SquareUserRound className="h-4 w-4" />
+//           </Button>
+//         </div>
+//       </CardContent>
+//     </Card>
+//   );
+// }
+
 function ProjectsMenu() {
   return (
     <div>
@@ -69,7 +94,7 @@ export function Dashboard() {
   const navigate = useNavigate();
   useEffect(() => {
     console.log(location);
-    if (location.pathname === '/dashboard') {
+    if (location.pathname === '/') {
       navigate('/dashboard/home', { replace: true });
     }
   }, [location, navigate]);
@@ -87,8 +112,9 @@ export function Dashboard() {
           <div className="flex-1">
             <ProjectsMenu />
           </div>
-          <div className="mt-auto p-4">
+          <div className="mt-auto flex flex-col gap-2 p-4">
             <ModeToggle />
+            {/* <ContactCard /> */}
           </div>
         </div>
       </div>
@@ -109,8 +135,9 @@ export function Dashboard() {
                 </Link>
               </nav>
               <ProjectsMenu />
-              <div className="mt-auto">
+              <div className="mt-auto flex flex-col gap-2">
                 <ModeToggle />
+                {/* <ContactCard /> */}
               </div>
             </SheetContent>
           </Sheet>
@@ -127,8 +154,8 @@ export function Dashboard() {
             <>
               {dashboardProjectsContent
                 .filter((project) => location.pathname === project.routes.dashboard)
-                .map((project) => (
-                  <div className="flex h-full flex-col gap-4 lg:flex-row">
+                .map((project, i) => (
+                  <div key={i} className="flex h-full flex-col gap-4 lg:flex-row">
                     <section className="lg:flex-1 lg:basis-1/3 xl:basis-1/4">
                       <Card>
                         <CardHeader>
@@ -143,8 +170,8 @@ export function Dashboard() {
                           <div className="flex flex-col gap-2 rounded border border-dashed p-2">
                             <span>Technologies:</span>
                             <div className="flex cursor-default flex-wrap justify-center gap-2">
-                              {project.technologies.map((tech) => (
-                                <Badge>{tech}</Badge>
+                              {project.technologies.map((tech, i) => (
+                                <Badge key={i}>{tech}</Badge>
                               ))}
                             </div>
                           </div>
@@ -170,8 +197,8 @@ export function Dashboard() {
                                 </a>
                               </Button>
                               <Button className="basis-1/2" asChild>
-                                <Link to={project.routes.singleView} target="_blank">
-                                  <span>Open in new tab</span>
+                                <Link to={project.routes.singleView}>
+                                  <span>Open in full screen</span>
                                   <Maximize2 className=" ml-4 h-4 w-4" />
                                 </Link>
                               </Button>

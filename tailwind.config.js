@@ -15,6 +15,7 @@ module.exports = {
     extend: {
       fontFamily: {
         RedHatDisplay: ['Red Hat Display', 'sans-serif'],
+        Rubik: ['Rubik', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

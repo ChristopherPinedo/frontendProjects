@@ -1,13 +1,13 @@
 import { OrderSummaryComponent } from '@/projects/orderSummaryComponent';
 import { dashboardProjectsLevels } from './dashboardProjectsLevels';
 import TimeTrackingDashboard from '@/projects/timeTrackingDashboard';
-import SpaceTourismWebsite from '@/projects/spaceTourismWebsite';
+// import SpaceTourismWebsite from '@/projects/spaceTourismWebsite';
 
 export const dashboardProjectsContent = [
   {
     id: 1,
     name: 'Order Summary component',
-    desc: 'Componente tipo card',
+    desc: 'Card component.',
     level: dashboardProjectsLevels[1],
     routes: {
       dashboard: `/dashboard${dashboardProjectsLevels[1].path}/Order-Summary-Component`,
@@ -21,7 +21,7 @@ export const dashboardProjectsContent = [
     source: {
       url: 'https://github.com/ChristopherPinedo/frontendProjects/blob/master/src/projects/orderSummaryComponent/index.tsx',
     },
-    technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
+    technologies: ['React JS', 'Tailwind CSS'],
   },
   {
     id: 2,
@@ -35,30 +35,30 @@ export const dashboardProjectsContent = [
     component: TimeTrackingDashboard,
     reference: {
       name: 'Frontend Mentor',
-      url: 'https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj',
+      url: 'https://www.frontendmentor.io/challenges/time-tracking-dashboard-UIQ7167Jw',
     },
     source: {
       url: '',
     },
-    technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
+    technologies: ['React JS', 'Tailwind CSS'],
   },
-  {
-    id: 3,
-    name: 'Space Tourism Website',
-    desc: 'proyect 3',
-    level: dashboardProjectsLevels[3],
-    routes: {
-      dashboard: `/dashboard${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
-      singleView: `/singleView${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
-    },
-    component: SpaceTourismWebsite,
-    reference: {
-      name: 'Frontend Mentor',
-      url: 'https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj',
-    },
-    source: {
-      url: '',
-    },
-    technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
-  },
+  // {
+  //   id: 3,
+  //   name: 'Space Tourism Website',
+  //   desc: 'proyect 3',
+  //   level: dashboardProjectsLevels[3],
+  //   routes: {
+  //     dashboard: `/dashboard${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
+  //     singleView: `/singleView${dashboardProjectsLevels[3].path}/Space-Tourism-Website`,
+  //   },
+  //   component: SpaceTourismWebsite,
+  //   reference: {
+  //     name: 'Frontend Mentor',
+  //     url: 'https://www.frontendmentor.io/challenges/order-summary-component-QlPmajDUj',
+  //   },
+  //   source: {
+  //     url: '',
+  //   },
+  //   technologies: ['Javascript', 'React JS', 'Tailwind CSS'],
+  // },
 ];

@@ -14,7 +14,6 @@ function NotFoundPage() {
       }
       navigate('/dashboard/home');
     }, 1000);
-    // navigate('/home');
   }, [counter]);
 
   return (
