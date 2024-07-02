@@ -9,11 +9,11 @@ export const dashboardProjectsLevels = {
     path: '/projects/junior',
     color: '#aad742',
   },
-  3: {
-    name: 'Intermediate',
-    path: '/projects/intermediate',
-    color: '#f1b604',
-  },
+  // 3: {
+  //   name: 'Intermediate',
+  //   path: '/projects/intermediate',
+  //   color: '#f1b604',
+  // },
   // 4: {
   //   name: 'Advanced',
   //   path: '/projects/advanced',

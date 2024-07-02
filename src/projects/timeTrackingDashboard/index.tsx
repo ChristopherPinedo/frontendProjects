@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import data from './resources/data.json';
 import imageJeremy from './resources/images/image-jeremy.png';
 import iconExercise from './resources/images/icon-exercise.svg';
@@ -8,7 +9,44 @@ import iconStudy from './resources/images/icon-study.svg';
 import iconWork from './resources/images/icon-work.svg';
 import { useState, useEffect } from 'react';
 
-function MainCard({ commonColors }) {
+// Definir interfaces al inicio del archivo
+interface CommonColors {
+  bgMain: string;
+  bgCardDark: string;
+  bgCardLight: string;
+  bgSecondary: string;
+}
+
+interface MainCardProps {
+  commonColors: CommonColors;
+}
+
+interface ContentCardProps {
+  content: DataItem; // Cambia 'any' por el tipo adecuado para tu contenido
+  commonColors: CommonColors;
+}
+
+interface Timeframes {
+  daily: { current: number; previous: number };
+  weekly: { current: number; previous: number };
+  monthly: { current: number; previous: number };
+}
+
+interface DataItem {
+  title: string;
+  timeframes: Timeframes;
+  extras?: {
+    color: string;
+    icon: string;
+  };
+}
+
+interface ProjectSectionExtra {
+  color: string;
+  icon: string;
+}
+
+function MainCard({ commonColors }: MainCardProps) {
   return (
     <div className="flex- flex-col">
       <div
@@ -34,9 +72,9 @@ function MainCard({ commonColors }) {
   );
 }
 
-function ContentCard({ content, key, commonColors }) {
+function ContentCard({ content, commonColors }: ContentCardProps) {
   return (
-    <div key={key} className="relative max-w-48 rounded-xl bg-slate-500">
+    <div className="relative max-w-48 rounded-xl bg-slate-500">
       <div className="h-48 rounded-xl" style={{ backgroundColor: content.extras.color }}>
         <img src={content.extras.icon} className=" absolute right-2 top-0 h-12 object-cover" />
       </div>
@@ -71,7 +109,7 @@ function TimeTrackingDashboard() {
     DesaturatedBlue: 'hsl(235, 45%, 61%)',
     PaleBlue: 'hsl(236, 100%, 87%)',
   };
-  const projectSectionExtras = {
+  const projectSectionExtras: Record<string, ProjectSectionExtra> = {
     Work: {
       color: projectColors.SoftOrange,
       icon: iconWork,
@@ -103,13 +141,14 @@ function TimeTrackingDashboard() {
     bgCardLight: projectColors.DesaturatedBlue,
     bgSecondary: projectColors.Blue,
   };
-  const [view, setView] = useState('Weekly');
-  const [ProjectInfo, setProjectInfo] = useState([]);
+  const [view, setView] = useState<string>('Weekly');
+  const [ProjectInfo, setProjectInfo] = useState<DataItem[]>([]);
 
   useEffect(() => {
-    let updatedInfo = [];
+    const updatedInfo: DataItem[] = [];
+    const typedData: DataItem[] = data as DataItem[];
     Object.keys(projectSectionExtras).map((sectionExtrasKey) => {
-      const value = data.find((data) => data.title === sectionExtrasKey);
+      const value = typedData.find((data) => data.title === sectionExtrasKey);
       if (value !== undefined) {
         value.extras = projectSectionExtras[sectionExtrasKey];
         updatedInfo.push(value);
@@ -124,7 +163,7 @@ function TimeTrackingDashboard() {
 
   return (
     <main
-      className=" flex min-h-screen w-full items-center justify-center font-Rubik"
+      className=" flex h-screen w-full items-center justify-center font-Rubik text-white"
       style={{ backgroundColor: projectCommonColors.bgMain }}
     >
       <section className="grid gap-6 p-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

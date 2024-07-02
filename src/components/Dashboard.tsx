@@ -50,21 +50,22 @@ import { ModeToggle } from '@/common/mode-toggle';
 function ProjectsMenu() {
   return (
     <div>
-      <nav className="px-3">
-        <NavLink
-          to="/dashboard/home"
-          className={({ isActive }) => (isActive ? 'font-semibold underline' : 'font-normal')}
-        >
-          <div className="flex items-center gap-2 rounded-lg py-2 text-sm">
-            <Home className="h-4 w-4" />
-            <span>Home</span>
-          </div>
-        </NavLink>
-      </nav>
-      <Separator className="my-2" />
       <Command>
-        <CommandInput placeholder="Buscar proyecto ..." />
+        {/* <Separator className="my-2" /> */}
+        <CommandGroup>
+          <NavLink
+            to="/dashboard/home"
+            className={({ isActive }) => (isActive ? 'font-semibold underline' : 'font-normal')}
+          >
+            <CommandItem className="flex cursor-pointer gap-2">
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </CommandItem>
+          </NavLink>
+        </CommandGroup>
+        <Separator className="my-2" />
         <CommandList>
+          <CommandInput placeholder="Buscar proyecto ..." />
           <CommandEmpty>Proyecto no encontrado</CommandEmpty>
           {Object.values(dashboardProjectsLevels).map((routeLevel, routeLevelIndex) => (
             <CommandGroup key={routeLevelIndex} heading={routeLevel.name}>
@@ -103,10 +104,13 @@ export function Dashboard() {
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[320px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="fixed flex h-full max-h-screen flex-col gap-2 md:w-[219px] lg:w-[319px]">
-          <div className="flex h-14 items-center justify-center border-b px-4 lg:h-[60px] lg:px-6">
-            <Link to="/dashboard/home" className="item flex gap-2 font-semibold">
-              <CodeXml className="h-6 w-6" />
-              <span>Frontend Projects</span>
+          <div className="flex h-14 items-center justify-center border-b px-4 py-10 lg:h-[60px] lg:px-6">
+            <Link to="/dashboard/home" className="flex items-center gap-3 font-semibold">
+              <CodeXml className="h-10 w-10" />
+              <div className="flex flex-col">
+                <span>Entry Level </span>
+                <span>Frontend Projects</span>
+              </div>
             </Link>
           </div>
           <div className="flex-1">
@@ -129,9 +133,12 @@ export function Dashboard() {
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
               <nav className="flex justify-center">
-                <Link to="/" className="flex items-center gap-2 text-lg font-medium">
-                  <CodeXml className="h-6 w-6" />
-                  <p>Frontend Projects</p>
+                <Link to="/" className="flex items-center gap-3 text-lg font-medium">
+                  <CodeXml className="h-12 w-12" />
+                  <div className="flex flex-col">
+                    <p>Entry Level</p>
+                    <p>Frontend Projects</p>
+                  </div>
                 </Link>
               </nav>
               <ProjectsMenu />

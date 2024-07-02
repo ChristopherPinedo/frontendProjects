@@ -12,9 +12,12 @@ function HomePage() {
     <>
       <div className=" my-4 flex flex-col gap-4 md:my-8 md:gap-8 xl:my-12 xl:gap-12">
         <div className="flex flex-col gap-8">
-          <div className="flex w-full flex-row items-center justify-center gap-2 text-3xl font-semibold">
-            <CodeXml className="h-9 w-9" />
-            <span>Frontend Projects</span>
+          <div className="flex w-full flex-row items-center justify-center gap-4 text-3xl font-semibold">
+            <CodeXml className="h-16 w-16" />
+            <div className="flex flex-col">
+              <span>Entry Level</span>
+              <span>Frontend Projects</span>
+            </div>
           </div>
           <Separator />
         </div>

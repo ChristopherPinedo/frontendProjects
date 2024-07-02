@@ -15,7 +15,7 @@ function OrderSummaryComponent() {
             <div className="flex gap-2 sm:gap-6">
               <img src={iconMusic} />
               <div>
-                <p className="text-sm font-black">Annual Plan</p>
+                <p className="text-sm font-black text-black">Annual Plan</p>
                 <p className="text-sm font-medium text-slate-400">$55.99/year</p>
               </div>
             </div>
