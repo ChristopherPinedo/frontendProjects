@@ -98,11 +98,12 @@ export default function SocialProofSection() {
         <div className="grid grid-rows-3 gap-6">
           {RatingArr.map((ele, i) => {
             let alignClass = alignDetection(i);
+            console.log(alignClass);
             return (
               <div
                 key={i}
-                className={`flex min-w-96 gap-6 rounded-xl p-6 justify-self-${alignClass}`}
-                style={{ backgroundColor: projectColors.lightGrayishMagenta }}
+                className="flex min-w-96 gap-6 rounded-xl p-6 "
+                style={{ backgroundColor: projectColors.lightGrayishMagenta, justifySelf: alignClass }}
               >
                 <div className="flex h-4 w-fit gap-1">
                   <img src={ele.rating.icon} />
@@ -126,8 +127,8 @@ export default function SocialProofSection() {
             return (
               <div
                 key={i}
-                className={`flex min-h-64 flex-col gap-6 rounded-xl p-6 self-${alignClass}`}
-                style={{ backgroundColor: projectColors.veryDarkMagenta }}
+                className="flex min-h-64 flex-col gap-6 rounded-xl p-6"
+                style={{ backgroundColor: projectColors.veryDarkMagenta, alignSelf: alignClass }}
               >
                 <div className="flex items-center gap-4">
                   <img className=" size-16 rounded-full" src={ele.image.src} alt={ele.image.alt} />
