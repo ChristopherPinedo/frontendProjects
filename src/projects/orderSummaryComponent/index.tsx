@@ -3,7 +3,7 @@ import iconMusic from './resources/images/icon-music.svg';
 
 function OrderSummaryComponent() {
   return (
-    <main className=" flex h-screen w-full items-center justify-center bg-indigo-100 font-RedHatDisplay">
+    <main className=" flex h-screen w-full items-center justify-center bg-indigo-100 py-8 font-RedHatDisplay">
       <section className="max-w-96">
         <img src={heroImg} className="rounded-t-2xl" />
         <div className=" flex flex-col items-center gap-5 rounded-b-2xl bg-white p-7 text-center sm:p-10">

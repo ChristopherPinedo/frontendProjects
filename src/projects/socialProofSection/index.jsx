@@ -80,10 +80,10 @@ export default function SocialProofSection() {
 
   return (
     <main
-      className=" container mx-auto grid h-screen w-full max-w-screen-lg gap-8 md:grid-cols-2"
+      className=" container mx-auto grid min-h-screen w-full max-w-screen-lg gap-8 py-8 md:grid-cols-2"
       style={{ backgroundColor: projectColors.white, color: 'white' }}
     >
-      <section className="my-auto">
+      <section className="my-auto justify-self-center md:justify-self-start">
         <div className="flex max-w-96 flex-col gap-6">
           <p className="text-5xl font-bold" style={{ color: projectColors.veryDarkMagenta }}>
             10,000+ of our users love our products.
@@ -94,15 +94,15 @@ export default function SocialProofSection() {
           </p>
         </div>
       </section>
-      <section className="my-auto">
-        <div className="grid grid-rows-3 gap-6">
+      <section className="my-auto justify-self-center md:justify-self-auto ">
+        <div className="grid max-w-96 grid-rows-3 gap-6 md:max-w-none ">
           {RatingArr.map((ele, i) => {
             let alignClass = alignDetection(i);
-            console.log(alignClass);
+            // console.log(alignClass);
             return (
               <div
                 key={i}
-                className="flex min-w-96 gap-6 rounded-xl p-6 "
+                className="flex w-full gap-6 rounded-xl p-6 md:w-fit "
                 style={{ backgroundColor: projectColors.lightGrayishMagenta, justifySelf: alignClass }}
               >
                 <div className="flex h-4 w-fit gap-1">
@@ -120,14 +120,14 @@ export default function SocialProofSection() {
           })}
         </div>
       </section>
-      <section className="md:col-span-2">
-        <div className="grid h-80 grid-cols-3 gap-6">
+      <section className="justify-self-center md:col-span-2">
+        <div className="grid h-full grid-rows-3 gap-6 md:h-96 md:grid-cols-3 md:grid-rows-1">
           {CommentsArr.map((ele, i) => {
             let alignClass = alignDetection(i);
             return (
               <div
                 key={i}
-                className="flex min-h-64 flex-col gap-6 rounded-xl p-6"
+                className="flex min-h-64 max-w-96 flex-col gap-6 rounded-xl p-6"
                 style={{ backgroundColor: projectColors.veryDarkMagenta, alignSelf: alignClass }}
               >
                 <div className="flex items-center gap-4">
